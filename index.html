@@ -1,0 +1,63 @@
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+</style>
+</head>
+
+<body>
+  <form id="tipVars">
+    Meal Price: <input type="number" name="price" step="0.01" value="100"><br>
+    Tip Percentage: <input type="number" name = "tipPercent" value="20"><br>
+  </form>
+  <button onclick="tipCalculate()">Calculate</button>
+  <div id="display">
+    <p>The price to pay is:  <span id="printPrice"></span></p>
+    <p>The actual tip percentage is:   <span id="printPercent"></span></p>
+
+  </div>
+</body>
+
+<footer>
+  <script>
+    function tipCalculate() {
+      var vals = document.getElementById("tipVars");
+      var price = Number(vals.elements[0].value);
+      var percent = Number(vals.elements[1].value);
+
+      var dollars = price +(price*(percent/100));
+      dollars = Math.floor(dollars)
+      var numDigits = Math.floor(Math.log(dollars)/Math.log(10));
+
+      var cents = dollars/(Math.pow(10,numDigits-1));
+      cents = Math.floor(cents);
+
+      var tens = Math.floor(cents/10);
+      var singles = cents % 10;
+      singles = singles*10;
+      cents = singles+tens;
+      cents = Math.floor(cents)
+      cents = cents/100
+
+      var finalPrice = dollars+cents;
+      var finalPercent = ((finalPrice-price)/(price))*(100);
+      finalPercent = finalPercent.toFixed(2);
+
+      document.getElementById("printPrice").innerHTML = "$"+finalPrice;
+      document.getElementById("printPercent").innerHTML = finalPercent+"%";
+    }
+  </script>
+</footer>
+</html>
