@@ -21,6 +21,10 @@ input[type=number] {
   font-weight: normal;
 }
 
+.input {
+  font-size:10px;
+}
+
 #calculateButton {
   border-radius:25px;
   border-color:transparent;
@@ -35,7 +39,7 @@ input[type=number] {
   background-color:black
 }
 
-#printPrice, #printPercent {
+.returnVals {
   font-weight: normal;
 }
 
@@ -47,15 +51,16 @@ input[type=number] {
 </head>
 
 <body>
-  <h1>
+  <h1 style="font-size:15px;font-weight:normal">
   <form id="tipVars">
     Meal Price: <input type="number" name="price" step="0.01"><br>
     Tip Percentage: <input type="number" name = "tipPercent" value="20"><br>
   </form>
   <button id="calculateButton" onclick="tipCalculate()">Calculate</button>
-  <div id="display">
-    <p>The price to pay is:  <span id="printPrice"></span></p>
-    <p>The actual tip percentage is:   <span id="printPercent"></span></p>
+  <div style="font-weight:bold" id="display">
+    <p>The price to pay is:  <span class="returnVals" id="printPrice"></span></p>
+    <p>The actual tip percentage is:   <span class="returnVals" id="printPercent"></span></p>
+    <p>The tip is:  <span class="returnVals" id="printTip"></span></p>
 
   </div>
   </h1>
@@ -83,11 +88,14 @@ input[type=number] {
       cents = cents/100
 
       var finalPrice = dollars+cents;
+      var finalTip = finalPrice - price;
+      finalTip = finalTip.toFixed(2);
       var finalPercent = ((finalPrice-price)/(price))*(100);
       finalPercent = finalPercent.toFixed(2);
 
       document.getElementById("printPrice").innerHTML = "$"+finalPrice;
       document.getElementById("printPercent").innerHTML = finalPercent+"%";
+      document.getElementById("printTip").innerHTML = "$"+finalTip;
     }
   </script>
 </footer>
