@@ -14,20 +14,43 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.h1 {
+  font-size:10px;
+  font-family: zillaslab,palatino,"Palatino Linotype",serif;
+  font-weight:normal;
+}
+
+
+#calculateButton {
+  border-radius:25px;
+  border-color:transparent;
+  background-color:#A70E16;
+  color:white;
+  width:100px;
+  height:25px;
+  font-size:15px;
+}
+
+#calculateButton:hover {
+  background-color:black
+}
 </style>
 </head>
 
 <body>
+  <h1 style="font-size:15px">
   <form id="tipVars">
     Meal Price: <input type="number" name="price" step="0.01"><br>
     Tip Percentage: <input type="number" name = "tipPercent" value="20"><br>
   </form>
-  <button onclick="tipCalculate()">Calculate</button>
+  <button id="calculateButton" onclick="tipCalculate()">Calculate</button>
   <div id="display">
     <p>The price to pay is:  <span id="printPrice"></span></p>
     <p>The actual tip percentage is:   <span id="printPercent"></span></p>
 
   </div>
+  </h1>
 </body>
 
 <footer>
